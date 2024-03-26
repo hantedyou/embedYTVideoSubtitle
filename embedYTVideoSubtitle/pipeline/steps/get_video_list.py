@@ -1,19 +1,19 @@
 import urllib.request
 import json
 
-from embedYTVideoSubtitle.steps.step import Step, StepException
+from embedYTVideoSubtitle.pipeline.steps.step import Step, StepException
 from embedYTVideoSubtitle.setting import YTDATAAPI_KEY
 
 class GetVideoListStep(Step):
     def __init__(self):
         pass
-    def process(self, inputs):
+    def process(self, data, inputs):
         channel_id = inputs['channel_id']
 
         base_video_url = 'https://www.youtube.com/watch?v='
         base_search_url = 'https://www.googleapis.com/youtube/v3/search?'
 
-        first_url = base_search_url+'key={}&channelId={}&part=snippet,id&order=date&maxResults=25'.format(YTDATAAPI_KEY, channel_id)
+        first_url = base_search_url + 'key={}&channelId={}&part=snippet,id&order=date&maxResults=25'.format(YTDATAAPI_KEY, channel_id)
 
         video_links = []
         url = first_url
@@ -31,6 +31,8 @@ class GetVideoListStep(Step):
             except KeyError:
                 # when there's no more page 
                 break
+
+        print(len(video_links), video_links[:5])
         return video_links
 
 

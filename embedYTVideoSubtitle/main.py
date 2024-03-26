@@ -6,22 +6,30 @@ import os
 import sys
 sys.path.append('../')
 
-from embedYTVideoSubtitle.steps.get_video_list import GetVideoListStep
-from embedYTVideoSubtitle.steps.step import StepException
-
-
-steps=[
-    GetVideoListStep(),
-]
-
-
-for step in steps:
-    try:
-        step.process()
-    except StepException as e:
-        print('Exception: ', e)
-        break
+from embedYTVideoSubtitle.pipeline.pipeline import Pipeline
+from embedYTVideoSubtitle.pipeline.steps.get_video_list import GetVideoListStep
+from embedYTVideoSubtitle.pipeline.steps.step import StepException
 
 CHANNEL_ID = 'UC8butISFwT-Wl7EV0hUK0BQ' 
+
+def main():
+    inputs = {
+        'channel_id': CHANNEL_ID,
+    }
+
+    steps=[
+        GetVideoListStep(),
+    ]
+
+    p = Pipeline(steps)
+    p.run(inputs)
+
+
+
+
+if __name__ == '__main__':
+    main()
+
+
 # video_list = get_all_video_in_channel(CHANNEL_ID)
 # print(video_list)
