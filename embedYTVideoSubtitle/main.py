@@ -9,8 +9,10 @@ sys.path.append('../')
 from embedYTVideoSubtitle.pipeline.pipeline import Pipeline
 from embedYTVideoSubtitle.pipeline.steps.get_video_list import GetVideoListStep
 from embedYTVideoSubtitle.pipeline.steps.step import StepException
+from embedYTVideoSubtitle.pipeline.steps.download_subtitles import DownloadSubtitles
 
-CHANNEL_ID = 'UC8butISFwT-Wl7EV0hUK0BQ' 
+# CHANNEL_ID = 'UC8butISFwT-Wl7EV0hUK0BQ'
+CHANNEL_ID = 'UCXg7gy4XmPZEGr4kumPNGyQ'  #  IELTS Advantage
 
 def main():
     inputs = {
@@ -19,6 +21,8 @@ def main():
 
     steps=[
         GetVideoListStep(),
+        DownloadSubtitles(),
+
     ]
 
     p = Pipeline(steps)
