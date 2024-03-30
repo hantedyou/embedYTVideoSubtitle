@@ -10,6 +10,9 @@ from embedYTVideoSubtitle.pipeline.pipeline import Pipeline
 from embedYTVideoSubtitle.pipeline.steps.get_video_list import GetVideoListStep
 from embedYTVideoSubtitle.pipeline.steps.step import StepException
 from embedYTVideoSubtitle.pipeline.steps.download_subtitles import DownloadSubtitles
+from embedYTVideoSubtitle.pipeline.steps.preflight import Preflight
+from embedYTVideoSubtitle.pipeline.steps.postflight import Postflight
+from embedYTVideoSubtitle.utils import Utils
 
 # CHANNEL_ID = 'UC8butISFwT-Wl7EV0hUK0BQ'
 CHANNEL_ID = 'UCXg7gy4XmPZEGr4kumPNGyQ'  #  IELTS Advantage
@@ -20,15 +23,15 @@ def main():
     }
 
     steps=[
+        Preflight(),
         GetVideoListStep(),
         DownloadSubtitles(),
-
+        Postflight(),
     ]
 
+    utils = Utils()
     p = Pipeline(steps)
-    p.run(inputs)
-
-
+    p.run(inputs, utils)
 
 
 if __name__ == '__main__':

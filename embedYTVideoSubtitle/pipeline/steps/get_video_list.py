@@ -7,7 +7,7 @@ from embedYTVideoSubtitle.setting import YTDATAAPI_KEY
 class GetVideoListStep(Step):
     def __init__(self):
         pass
-    def process(self, data, inputs):
+    def process(self, data, inputs, utils):
         channel_id = inputs['channel_id']
 
         base_video_url = 'https://www.youtube.com/watch?v='
