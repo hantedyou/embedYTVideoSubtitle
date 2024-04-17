@@ -7,10 +7,11 @@ import sys
 sys.path.append('../')
 
 from embedYTVideoSubtitle.pipeline.pipeline import Pipeline
-from embedYTVideoSubtitle.pipeline.steps.get_video_list import GetVideoListStep
 from embedYTVideoSubtitle.pipeline.steps.step import StepException
-from embedYTVideoSubtitle.pipeline.steps.download_subtitles import DownloadSubtitles
 from embedYTVideoSubtitle.pipeline.steps.preflight import Preflight
+from embedYTVideoSubtitle.pipeline.steps.get_video_list import GetVideoListStep
+from embedYTVideoSubtitle.pipeline.steps.download_subtitles import DownloadSubtitles
+from embedYTVideoSubtitle.pipeline.steps.read_subtitles import ReadSubtitles
 from embedYTVideoSubtitle.pipeline.steps.postflight import Postflight
 from embedYTVideoSubtitle.utils import Utils
 
@@ -26,6 +27,7 @@ def main():
         Preflight(),
         GetVideoListStep(),
         DownloadSubtitles(),
+        ReadSubtitles(),
         Postflight(),
     ]
 

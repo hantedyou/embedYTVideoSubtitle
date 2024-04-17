@@ -41,7 +41,6 @@ class DownloadSubtitles(Step):
             }
         
 
-
         start = time.time()
 
         # 測試用，避免重複下載太多次
